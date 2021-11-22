@@ -1,43 +1,35 @@
 const fs = require("fs");
+const { resolve } = require("path/posix");
 
-function generateHTML(data) {
-  return `
-  # ${data.projectName}
-  ## Project Description
-  ${data.description}
-  # Table of Contents
-  1. [Description](#project-description)
-  2. [LicenseType](#license)
-  3. [Installation](#installation)
-  4. [Questions](#questions)
+const writeFile = (fileContent) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile("./team.html", fileContent, (err) => {
+      if (err) {
+        reject(err);
 
- 
-  ## License
-  ![GitHub License](https://img.shields.io/badge/license-${data.licenseType}-blue.svg)
-  Licensed under ${data.licenseType}
+        return;
+      }
+      resolve({
+        ok: true,
+        message: "Page Generated!",
+      });
+    });
+  });
+};
+const copyFile = () => {
+  return new Promise((resolve, reject) => {
+    fs.copyFile("./src/assets/css/style.css", (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
-  ## Installation
-  * Download your repo to VS code. 
-  * Verify Inquirer is installed. 
-  * Open your terminal of choice. 
-  * Type 'node index.js. 
-  * Answer the following questions with the required information. 
-  * If done correctly a README.md will populate.
-  
-  
-  ## Questions
-  If you have any questions you can email me at ${data.email}
-  See all of my work at GitHub [${data.github}](https://github.com/karmadog72)
-  
-  ## Testing 
-  ${data.testing} 
+      resolve({
+        ok: true,
+        message: "Stylesheet created!",
+      });
+    });
+  });
+};
 
-  ## Video Walk Through
-  ![Video-Link](https://watch.screencastify.com/v/IsF3B1nOQqkMZt3alRvZ)
-
-  ## Image Example
-  ![Image-Example](/utils/images/readme-pic.PNG?raw=true)
-`;
-}
-
-module.exports = generateMarkdown;
+module.exports = { writeFile, copyFile };
