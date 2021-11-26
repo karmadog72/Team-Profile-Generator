@@ -4,7 +4,7 @@ const {
   findById,
   createNewIntern
   validateIntern,
-} = require("../lib");
+} = require("../_tests_/Intern.test");
 
 jest.mock("fs");
 test("creates an intern object", () => {

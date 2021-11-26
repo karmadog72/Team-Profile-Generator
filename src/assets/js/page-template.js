@@ -2,19 +2,21 @@ function generateHtml() {
   const html = `<!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
-        <title>Team-Profile-Generator</title>
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/style.css">
+    <title>Team-Profile-Generator</title>
+</head>
     <body>
     <nav class="navbar navbar-light  mb-5" style="background-color: #a3d8ec;">
     <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
 </nav>
         <div class="container">
             <div class="row">`;
-  fs.writeFile("./team.html", html, function (err) {
+  fs.writeFile("./team-profile.html", html, function (err) {
     if (err) {
       console.log(err);
     }
@@ -28,7 +30,6 @@ function generateHtml(employee) {
     const id = employee.getId();
     const role = employee.getRole();
     const email = employee.getEmail();
-    const gitHub = employee.getGitHub();
 
     let data = "";
     if (role === "Engineer") {

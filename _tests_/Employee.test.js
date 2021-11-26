@@ -4,7 +4,7 @@ const {
   findById,
   createNewEmployee,
   validateEmployee,
-} = require("../lib");
+} = require("../_tests_/Employee.test");
 
 jest.mock("fs");
 test("creates an employee object", () => {
