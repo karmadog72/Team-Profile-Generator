@@ -16,6 +16,7 @@ function generateHtml() {
 </nav>
         <div class="container">
             <div class="row">`;
+
   fs.writeFile("./team-profile.html", html, function (err) {
     if (err) {
       console.log(err);

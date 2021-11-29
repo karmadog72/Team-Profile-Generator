@@ -1,10 +1,10 @@
 const inquirer = require("inquirer");
 var fs = require("fs");
 const generateHTML = require("./src/generateHTML");
-const Manager = require("./lib/Manger");
+const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const employees = ["manager", "engineer","intern"];
+const employees = [];
 
 function addEmployee() {
   // questions section
@@ -25,7 +25,7 @@ function addEmployee() {
       },
       {
         type: "input",
-        name: "link",
+        name: "email",
         message: "Enter employee work email",
         validate: (linkInput) => {
           if (linkInput) {
@@ -42,14 +42,25 @@ function addEmployee() {
         message: "Enter employee's ID",
       },
       {
-        type: "input",
+        type: "list",
         name: "role",
         message: "Enter employee's role",
+        choices: ["Manager", "Intern", "Engineer"],
       },
       {
         type: "input",
         name: "phone",
         message: "Enter employee's office phone number",
+      },
+      {
+        type: "input",
+        name: "github",
+        message: "Enter employee's github",
+      },
+      {
+        type: "input",
+        name: "school",
+        message: "Enter employee's school",
       },
       {
         type: "confirm",
@@ -60,35 +71,29 @@ function addEmployee() {
     ])
 
     .then((data) => {
-      if (data.role === "manager") {
-        const employee = new Manager(
-          data.id,
-          data.name,
-          data.phone,
-          data.email
-        );
-        employees.push(employee);
-      } else if (data.role === "engineer") {
-        const employee = new Engineer(
+      console.log("data", data);
+      if (data.role === "Manager") {
+        const manager = new Manager(data.id, data.name, data.phone, data.email);
+        employees.push(manager);
+      } else if (data.role === "Engineer") {
+        const engineer = new Engineer(
           data.id,
           data.name,
           data.github,
           data.email
         );
-        employees.push(employee);
-      } else if (data.role === "intern") {
-        const employee = new Intern(
-          data.id,
-          data.name,
-          data.school,
-          data.email
-        );
-        employees.push(employee);
+        employees.push(engineer);
+      } else if (data.role === "Intern") {
+        const intern = new Intern(data.id, data.name, data.school, data.email);
+        employees.push(intern);
       }
 
       if (data.confirmAddEmployee) {
         addEmployee();
-      } else writeNewFile();
+      } else {
+        console.log("List of employees", employees);
+        writeNewFile();
+      }
     });
 }
 function writeNewFile() {
