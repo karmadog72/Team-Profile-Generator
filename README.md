@@ -2,6 +2,9 @@
 Team-Profile-Generator
 * AN APP TO GENERATE YOUR COWORKERS
 
+#Video Walk Through 
+https://watch.screencastify.com/v/bvp31v9YemIffVZykOL0
+
 
 ![team html](https://user-images.githubusercontent.com/89046934/143792867-36493c9a-1159-4570-9f8f-6f7fd321bd41.PNG)
 ![team profile pic](https://user-images.githubusercontent.com/89046934/143792871-08e97820-43ea-4757-8029-034f45a0fece.PNG)
